@@ -1576,6 +1576,23 @@ def net_info(network, extra="", **dargs):
     return command("net-info %s %s" % (network, extra), **dargs)
 
 
+def net_update(network, update_cmd, section, xml, extra="", **dargs):
+    """
+    Update parts of an existing network's configuration
+
+    :param network: network name or uuid
+    :param update_cmd: type of update (add-first, add-last, delete, or modify)
+    :param section: which section of network configuration to update
+    :param xml: name of file containing xml
+    :param extra: extra parameters to pass to command.
+    :param dargs: standardized virsh function API keywords
+    :return: CmdResult instance
+    """
+    cmd = "net-update %s %s %s %s %s" \
+          % (network, update_cmd, section, xml, extra)
+    return command(cmd, **dargs)
+
+
 def pool_info(name, **dargs):
     """
     Returns basic information about the storage pool.
