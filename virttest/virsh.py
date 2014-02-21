@@ -2936,17 +2936,8 @@ def secret_list(options="", **dargs):
     :param dargs: standardized virsh function API keywords
     :return: list of secret
     """
-    # CmdResult is handled here, force ignore_status
-    dargs['ignore_status'] = True
     cmd = "secret-list %s" % options
-    if options:
-        cmd += " %s" % options
-
-    result = command(cmd, **dargs)
-    if result.exit_status != 0:
-        raise error.CmdError(cmd, result, "Failed to get list of secret")
-
-    return result
+    return command(cmd, **dargs)
 
 
 def secret_define(xml_file, options=None, **dargs):
